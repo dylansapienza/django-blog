@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UserRegistrationForm
 from django.contrib import messages
+from blog.models import Post
 
 
 def register(request):
@@ -21,4 +22,9 @@ def register(request):
 
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
+
+    context = {
+        'posts': Post.objects.filter(author=request.user.id),
+    }
+
+    return render(request, 'users/profile.html', context)
