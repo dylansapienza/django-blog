@@ -5,6 +5,8 @@ from .forms import UserRegistrationForm
 from django.contrib import messages
 from blog.models import Post
 
+# comment
+
 
 def register(request):
     if request.method == 'POST':
